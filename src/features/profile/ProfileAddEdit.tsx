@@ -80,8 +80,10 @@ const ProfileAddEdit = () => {
   }, [formProfile]);
 
   const InputChanged = (name: string, value: any): void => {
-    if (name === "zip" && value.toString().length > 5) {
-      return;
+    if (name === "zip") {
+      if (value?.match(/[^0-9.]/g)) {
+        return;
+      }
     }
     if (name === "phone") {
       if (value?.match(/[^0-9.]/g)) {
@@ -156,7 +158,6 @@ const ProfileAddEdit = () => {
     {
       id: "zip",
       xsWidth: 2,
-      type: "number",
       maxLength: 5,
       icon: <LocationOn />,
     },
