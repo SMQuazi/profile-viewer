@@ -2,7 +2,7 @@ import { Grid, TextField } from "@mui/material";
 import { ProfileItem } from "./ProfileItem";
 import { profilesState } from "./profileSlice";
 import { useSelector } from "react-redux";
-import ActionButton from "../../layout/ActionButton";
+import ActionButton from "../../components/ActionButton";
 import { PersonAdd } from "@mui/icons-material";
 import { useState } from "react";
 

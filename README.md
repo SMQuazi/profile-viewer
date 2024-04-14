@@ -4,7 +4,7 @@
 
 <br />
 
-Create a `.env` file in the root directory with your token for the API
+Create a `./config/.env` file with your token for the API
 
 ```
 REACT_APP_API_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
