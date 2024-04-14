@@ -15,7 +15,7 @@ const Header = () => {
           <Link href="/">
             <img src={RivetLogo} alt="logo" width={30} />
           </Link>
-          <h1>Welcome to Rivet</h1>
+          <h1>RIVET Employees</h1>
         </Stack>
       </AppBar>
     </header>
