@@ -19,6 +19,7 @@ const ProfileList = () => {
         sx={{ marginTop: 10, marginBottom: 4 }}
         label="Search Profiles"
         onChange={(e) => setSearch(e.target.value)}
+        variant="filled"
         fullWidth
       />
 
