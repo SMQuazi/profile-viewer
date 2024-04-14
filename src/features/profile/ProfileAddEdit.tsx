@@ -1,6 +1,7 @@
 import {
   Button,
   Grid,
+  InputAdornment,
   MenuItem,
   Paper,
   TextField,
@@ -19,6 +20,16 @@ import {
 } from "./profileSlice";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../store";
+import {
+  Email,
+  Home,
+  LocationCity,
+  LocationOn,
+  NoteAdd,
+  Person,
+  Phone,
+  Photo,
+} from "@mui/icons-material";
 
 const ProfileAddEdit = () => {
   const theme = useTheme();
@@ -120,17 +131,21 @@ const ProfileAddEdit = () => {
   const textfieldsData = [
     {
       id: "first_name",
+      icon: <Person />,
     },
     {
       id: "last_name",
+      icon: <Person />,
     },
     {
       id: "address",
       xsWidth: 5,
+      icon: <Home />,
     },
     {
       id: "city",
       xsWidth: 3,
+      icon: <LocationCity />,
     },
     {
       id: "state",
@@ -143,11 +158,13 @@ const ProfileAddEdit = () => {
       xsWidth: 2,
       type: "number",
       maxLength: 5,
+      icon: <LocationOn />,
     },
     {
       id: "phone",
       maxLength: 10,
       type: "tel",
+      icon: <Phone />,
       onblur: () => {
         let phone = formProfile.phone;
         if (phone.length === 10) {
@@ -167,14 +184,17 @@ const ProfileAddEdit = () => {
     },
     {
       id: "email",
+      icon: <Email />,
     },
     {
       id: "photo",
       optional: true,
+      icon: <Photo />,
     },
     {
       id: "notes",
       optional: true,
+      icon: <NoteAdd />,
     },
   ];
 
@@ -211,7 +231,16 @@ const ProfileAddEdit = () => {
                   required={!fieldData.optional}
                   onChange={(e) => InputChanged(fieldData.id, e.target.value)}
                   value={formProfile?.[fieldData.id] || ""}
-                  inputProps={{ maxLength: fieldData.maxLength || 255 }}
+                  inputProps={{
+                    maxLength: fieldData.maxLength || 255,
+                  }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        {fieldData.icon}
+                      </InputAdornment>
+                    ),
+                  }}
                   onBlur={fieldData.onblur || undefined}
                   onFocus={fieldData.onfocus || undefined}
                 >
