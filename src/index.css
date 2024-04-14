@@ -4,7 +4,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: rgba(194,227,255,1);
-  background: linear-gradient(90deg, rgba(194,227,255,1) 0%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(90deg, rgb(210 234 255) 0%, rgb(243 229 255) 100%);
   padding-bottom: 4em;
   overflow-y: scroll
 }
