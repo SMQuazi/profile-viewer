@@ -55,6 +55,8 @@ const ProfileAddEdit = () => {
         formProfile?.first_name &&
           formProfile?.last_name &&
           formProfile?.phone &&
+          (formProfile?.phone.length === 10 ||
+            formProfile?.phone.length === 12) &&
           formProfile?.email &&
           formProfile?.email.match(/^\S+@\S+\.\S+$/) &&
           formProfile?.address &&
@@ -67,6 +69,9 @@ const ProfileAddEdit = () => {
   }, [formProfile]);
 
   const InputChanged = (name: string, value: any): void => {
+    if (name === "zip" && value.toString().length > 5) {
+      return;
+    }
     setFormProfile({ ...formProfile, [name]: value });
   };
 
