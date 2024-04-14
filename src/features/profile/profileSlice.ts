@@ -93,12 +93,6 @@ export const profileSlice = createSlice({
       const found = state.profiles.find((item) => item.id === id);
       state.inFocus = found || null;
     },
-    replaceProfile: (state, action) => {
-      const profile: Profile = action.payload;
-      state.profiles = state.profiles.map((p) =>
-        p.id === profile.id ? profile : p
-      );
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchProfiles.fulfilled, (state, action) => {
@@ -129,7 +123,7 @@ export const profileSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setActiveProfile, replaceProfile } = profileSlice.actions;
+export const { setActiveProfile } = profileSlice.actions;
 export const profilesState = (state: RootState) => state.profile.profiles;
 export const profilesCount = (state: RootState) =>
   state.profile.profiles.length as number;
