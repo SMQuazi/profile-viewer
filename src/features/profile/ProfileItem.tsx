@@ -11,7 +11,7 @@ import {
 import { Profile } from "./profileUtils";
 import { useNavigate } from "react-router-dom";
 import { setActiveProfile } from "./profileSlice";
-import { Email, PhoneAndroid } from "@mui/icons-material";
+import { Email, Phone } from "@mui/icons-material";
 import Empty from "../../assets/empty.png";
 import { useState } from "react";
 import { useAppDispatch } from "../../store";
@@ -85,7 +85,7 @@ const ProfileItem = ({ profile }: ProfileItemArgs) => {
               </Typography>
             </Stack>
             <Stack direction="row" spacing={1}>
-              <PhoneAndroid color="primary" />
+              <Phone color="primary" />
               <Typography color={theme.palette.primary.dark}>
                 {profile.phone}
               </Typography>

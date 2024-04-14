@@ -4,7 +4,7 @@ import {
   Email,
   LocationOn,
   Note,
-  PhoneAndroid,
+  Phone,
 } from "@mui/icons-material";
 import {
   Box,
@@ -103,7 +103,7 @@ const ProfileShow = () => {
               </Stack>
 
               <Stack direction="row" alignItems="center">
-                <PhoneAndroid color="primary" />
+                <Phone color="primary" />
                 <Typography color={theme.palette.primary.dark}>
                   {current.phone}
                 </Typography>
