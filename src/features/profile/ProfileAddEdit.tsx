@@ -29,7 +29,6 @@ const ProfileAddEdit = () => {
   const profiles: Profile[] = useSelector(profilesState);
   const current: Profile | null = useSelector(profileInFocus);
 
-  // TODO define NEW Profile
   const [formProfile, setFormProfile] = useState<any>({
     state: US_States[0],
   });
@@ -57,10 +56,12 @@ const ProfileAddEdit = () => {
           formProfile?.last_name &&
           formProfile?.phone &&
           formProfile?.email &&
+          formProfile?.email.match(/^\S+@\S+\.\S+$/) &&
           formProfile?.address &&
           formProfile?.city &&
           formProfile?.state &&
-          formProfile?.zip
+          formProfile?.zip &&
+          formProfile?.zip.length === 5
       )
     );
   }, [formProfile]);
@@ -182,6 +183,7 @@ const ProfileAddEdit = () => {
               fullWidth
               required
               onChange={(e) => InputChanged("zip", e.target.value)}
+              type="number"
               value={formProfile?.zip || ""}
             />
           </Grid>
