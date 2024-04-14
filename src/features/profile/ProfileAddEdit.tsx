@@ -72,6 +72,11 @@ const ProfileAddEdit = () => {
     if (name === "zip" && value.toString().length > 5) {
       return;
     }
+    if (name === "phone") {
+      if (value?.match(/[^0-9.]/g)) {
+        return;
+      }
+    }
     setFormProfile({ ...formProfile, [name]: value });
   };
 
