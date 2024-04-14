@@ -107,6 +107,73 @@ const ProfileAddEdit = () => {
     }
   };
 
+  const textfieldsData = [
+    {
+      id: "first_name",
+    },
+    {
+      id: "last_name",
+    },
+    {
+      id: "address",
+      xsWidth: 5,
+    },
+    {
+      id: "city",
+      xsWidth: 3,
+    },
+    {
+      id: "state",
+      xsWidth: 2,
+      isSelect: true,
+      options: US_States,
+    },
+    {
+      id: "zip",
+      xsWidth: 2,
+      type: "number",
+      maxLength: 5,
+    },
+    {
+      id: "phone",
+      maxLength: 10,
+      type: "tel",
+      onblur: () => {
+        let phone = formProfile.phone;
+        if (phone.length === 10) {
+          phone =
+            phone.substring(0, 3) +
+            "-" +
+            phone.substring(3, 6) +
+            "-" +
+            phone.substring(6, 10);
+        }
+        setFormProfile({ ...formProfile, phone });
+      },
+      onfocus: () => {
+        const phone = formProfile.phone?.replaceAll("-", "");
+        setFormProfile({ ...formProfile, phone });
+      },
+    },
+    {
+      id: "email",
+    },
+    {
+      id: "photo",
+      optional: true,
+    },
+    {
+      id: "notes",
+      optional: true,
+    },
+  ];
+
+  const dataIdToLabel = (text: string) =>
+    text
+      .split("_")
+      .map((word) => word[0].toUpperCase() + word.substring(1))
+      .join(" ");
+
   return (
     <>
       <Paper
@@ -123,106 +190,31 @@ const ProfileAddEdit = () => {
             </Typography>
           </Grid>
 
-          <Grid item xs={6}>
-            <TextField
-              label="First Name"
-              fullWidth
-              required
-              onChange={(e) => InputChanged("first_name", e.target.value)}
-              value={formProfile?.first_name || ""}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              label="Last Name"
-              fullWidth
-              required
-              onChange={(e) => InputChanged("last_name", e.target.value)}
-              value={formProfile?.last_name || ""}
-            />
-          </Grid>
-
-          <Grid item xs={5}>
-            <TextField
-              label="Street Address"
-              fullWidth
-              required
-              onChange={(e) => InputChanged("address", e.target.value)}
-              value={formProfile?.address || ""}
-            />
-          </Grid>
-          <Grid item xs={3}>
-            <TextField
-              label="City"
-              fullWidth
-              required
-              onChange={(e) => InputChanged("city", e.target.value)}
-              value={formProfile?.city || ""}
-            />
-          </Grid>
-          <Grid item xs={2}>
-            <TextField
-              select
-              label="State"
-              fullWidth
-              defaultValue={US_States[0]}
-              required
-              onChange={(e) => InputChanged("state", e.target.value)}
-              value={formProfile?.state || ""}
-            >
-              {US_States.map((state) => (
-                <MenuItem key={state} value={state}>
-                  {state}
-                </MenuItem>
-              ))}
-            </TextField>
-          </Grid>
-          <Grid item xs={2}>
-            <TextField
-              label="Zip Code"
-              fullWidth
-              required
-              onChange={(e) => InputChanged("zip", e.target.value)}
-              type="number"
-              value={formProfile?.zip || ""}
-            />
-          </Grid>
-
-          <Grid item xs={6}>
-            <TextField
-              label="Phone Number"
-              fullWidth
-              required
-              onChange={(e) => InputChanged("phone", e.target.value)}
-              value={formProfile?.phone || ""}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              label="Email Address"
-              fullWidth
-              required
-              onChange={(e) => InputChanged("email", e.target.value)}
-              value={formProfile?.email || ""}
-            />
-          </Grid>
-
-          <Grid item xs={6}>
-            <TextField
-              label="Photo URL"
-              fullWidth
-              onChange={(e) => InputChanged("photo", e.target.value)}
-              value={formProfile?.photo || ""}
-            />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              label="Notes"
-              fullWidth
-              onChange={(e) => InputChanged("notes", e.target.value)}
-              value={formProfile?.notes || ""}
-            />
-          </Grid>
+          {textfieldsData.map((fieldData) => {
+            return (
+              <Grid item xs={fieldData.xsWidth || 6} key={fieldData.id}>
+                <TextField
+                  type={fieldData.type || "text"}
+                  select={fieldData.isSelect}
+                  label={dataIdToLabel(fieldData.id)}
+                  fullWidth
+                  required={!fieldData.optional}
+                  onChange={(e) => InputChanged(fieldData.id, e.target.value)}
+                  value={formProfile?.[fieldData.id] || ""}
+                  inputProps={{ maxLength: fieldData.maxLength || 255 }}
+                  onBlur={fieldData.onblur || undefined}
+                  onFocus={fieldData.onfocus || undefined}
+                >
+                  {fieldData.isSelect &&
+                    fieldData.options?.map((state) => (
+                      <MenuItem key={state} value={state}>
+                        {state}
+                      </MenuItem>
+                    ))}
+                </TextField>
+              </Grid>
+            );
+          })}
 
           <Grid container sx={{ marginTop: 2, padding: 2 }} spacing={4}>
             <Grid item xs={8}>
