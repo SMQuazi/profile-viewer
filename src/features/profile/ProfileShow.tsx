@@ -88,42 +88,29 @@ const ProfileShow = () => {
             />
 
             <CardContent>
-              <Typography
-                gutterBottom
-                variant="h5"
-                component="div"
-                color="Highlight"
-              >
+              <Typography gutterBottom variant="h5">
                 {current.first_name} {current.last_name}
               </Typography>
 
               <Stack direction="row" alignItems="center" spacing={1}>
-                <Email color="primary" />
-                <Typography color={theme.palette.primary.dark}>
-                  {current.email}
-                </Typography>
+                <Email />
+                <Typography>{current.email}</Typography>
               </Stack>
 
               <Stack direction="row" alignItems="center">
-                <Phone color="primary" />
-                <Typography color={theme.palette.primary.dark}>
-                  {current.phone}
-                </Typography>
+                <Phone />
+                <Typography>{current.phone}</Typography>
               </Stack>
 
               <Stack direction="row" alignItems="center">
-                <LocationOn color="primary" />
-                <Typography color={theme.palette.primary.dark}>
-                  {profileAddress(current)}
-                </Typography>
+                <LocationOn />
+                <Typography>{profileAddress(current)}</Typography>
               </Stack>
 
               {current.notes && (
                 <Stack direction="row" alignItems="center">
-                  <Note color="primary" />
-                  <Typography color={theme.palette.primary.dark}>
-                    {current.notes}
-                  </Typography>
+                  <Note />
+                  <Typography>{current.notes}</Typography>
                 </Stack>
               )}
             </CardContent>
