@@ -54,7 +54,6 @@ const ProfileItem = ({ profile }: ProfileItemArgs) => {
               width: "101%",
             },
             borderRadius: 2,
-            border: "1px #ddd solid",
             height: "100%",
             width: "100%",
             minWidth: 200,
@@ -76,25 +75,16 @@ const ProfileItem = ({ profile }: ProfileItemArgs) => {
             onError={() => setPhoto(Empty)}
           />
           <CardContent>
-            <Typography
-              gutterBottom
-              variant="h5"
-              component="div"
-              color="Highlight"
-            >
+            <Typography gutterBottom variant="h5" component="div">
               {profile.first_name} {profile.last_name}
             </Typography>
             <Stack direction="row" spacing={1}>
-              <Email color="primary" />
-              <Typography color={theme.palette.primary.dark}>
-                {profile.email}
-              </Typography>
+              <Email />
+              <Typography>{profile.email}</Typography>
             </Stack>
             <Stack direction="row" spacing={1}>
-              <Phone color="primary" />
-              <Typography color={theme.palette.primary.dark}>
-                {profile.phone}
-              </Typography>
+              <Phone />
+              <Typography>{profile.phone}</Typography>
             </Stack>
           </CardContent>
         </Card>
