@@ -1,7 +1,7 @@
 import { ProfileList } from "./features/profile/ProfileList";
 import { Box, ThemeOptions, ThemeProvider, createTheme } from "@mui/material";
-import { Status } from "./layout/Status";
-import Header from "./layout/Header";
+import { Status } from "./components/Status";
+import Header from "./components/Header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ProfileShow } from "./features/profile/ProfileShow";
 import { ProfileAddEdit } from "./features/profile/ProfileAddEdit";

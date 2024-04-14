@@ -49,10 +49,16 @@ const ProfileItem = ({ profile }: ProfileItemArgs) => {
           onMouseOut={() => setRaised(false)}
           raised={raised}
           sx={{
+            ":hover": {
+              height: "101%",
+              width: "101%",
+            },
             borderRadius: 2,
             border: "1px #ddd solid",
             height: "100%",
+            width: "100%",
             minWidth: 200,
+            transition: "height .1s ease-in, width .1s ease-in",
           }}
         >
           <CardMedia

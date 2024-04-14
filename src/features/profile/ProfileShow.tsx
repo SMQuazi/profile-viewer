@@ -27,7 +27,7 @@ import {
 import { useSelector } from "react-redux";
 import { profileAddress } from "./profileUtils";
 import Empty from "../../assets/empty.png";
-import ActionButton from "../../layout/ActionButton";
+import ActionButton from "../../components/ActionButton";
 import { useAppDispatch } from "../../store";
 
 const ProfileShow = () => {
