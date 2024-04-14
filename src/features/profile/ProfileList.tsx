@@ -3,7 +3,7 @@ import { ProfileItem } from "./ProfileItem";
 import { profilesState } from "./profileSlice";
 import { useSelector } from "react-redux";
 import ActionButton from "../../layout/ActionButton";
-import { Add } from "@mui/icons-material";
+import { PersonAdd } from "@mui/icons-material";
 import { useState } from "react";
 
 const ProfileList = () => {
@@ -12,7 +12,7 @@ const ProfileList = () => {
   return (
     <>
       <ActionButton link="add" tooltipText="Add a profile">
-        <Add />
+        <PersonAdd />
       </ActionButton>
 
       <TextField

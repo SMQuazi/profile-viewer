@@ -4,6 +4,7 @@ import {
   Email,
   LocationOn,
   Note,
+  Person,
   Phone,
 } from "@mui/icons-material";
 import {
@@ -55,7 +56,8 @@ const ProfileShow = () => {
         link={`/edit/${current.id}`}
         tooltipText={`Edit ${current.first_name} ${current.last_name}'s profile`}
       >
-        <Edit />
+        <Edit sx={{ position: "relative", left: 5, height: 20 }} />
+        <Person sx={{ position: "relative", right: 5 }} />
       </ActionButton>
       <Box sx={{ marginTop: 8 }}>
         <Box>
