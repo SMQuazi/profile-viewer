@@ -1,28 +1,44 @@
 import { ProfileList } from "./features/profile/ProfileList";
-import { Box, ThemeOptions, ThemeProvider, createTheme } from "@mui/material";
+import { Box, ThemeProvider, createTheme } from "@mui/material";
 import { Status } from "./components/Status";
 import Header from "./components/Header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ProfileShow } from "./features/profile/ProfileShow";
 import { ProfileAddEdit } from "./features/profile/ProfileAddEdit";
+import CssBaseline from "@mui/material/CssBaseline";
+import { useSelector } from "react-redux";
+import { darkmode } from "./features/settings/settingsSlice";
 
-const themeOptions: ThemeOptions = {
+const lightTheme = createTheme({
   palette: {
     mode: "light",
-    primary: {
-      main: "#3f4b85",
+    background: {
+      default: "#b4c1e5",
     },
-    secondary: {
-      main: "#af2ba5",
+    primary: {
+      main: "#011f3e",
     },
   },
-};
+});
 
-const theme = createTheme(themeOptions);
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    background: {
+      default: "#434a5e",
+    },
+    primary: {
+      main: "#011f3e",
+    },
+  },
+});
 
 function App() {
+  const isDarkMode = useSelector(darkmode);
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+      <CssBaseline />
       <Header />
       <Box
         sx={{

@@ -26,7 +26,7 @@ export const ActionButton = (props: ActionButtonProps) => {
 
   return (
     <Zoom in={true}>
-      <Tooltip title={props.tooltipText}>
+      <Tooltip title={props.tooltipText} placement="top-end">
         <Fab
           color="secondary"
           className="fab"
