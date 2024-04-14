@@ -37,8 +37,8 @@ const ProfileAddEdit = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const profiles: Profile[] = useSelector(profilesState);
-  const current: Profile | null = useSelector(profileInFocus);
+  const profiles = useSelector(profilesState);
+  const current = useSelector(profileInFocus);
 
   const [formProfile, setFormProfile] = useState<any>({
     state: US_States[0],

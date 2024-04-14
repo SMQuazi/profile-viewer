@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Profile, ProfileState } from "./profileUtils";
 import { RootState } from "../../store";
-import { isArray } from "lodash";
 
 const initialState = {
-  profiles: [],
+  profiles: {},
   inFocus: null,
 } as ProfileState;
 
@@ -19,11 +18,12 @@ export const fetchProfiles = createAsyncThunk("users/fetchUsers", async () => {
     headers: { token },
   });
   const profiles = await res.json();
+  const profilesObject: any = {};
+  profiles.forEach((profile: Profile) => {
+    profilesObject[profile.id] = profile;
+  });
 
-  if (isArray(profiles)) {
-    return profiles;
-  }
-  return [profiles];
+  return profilesObject;
 });
 
 export const editProfile = createAsyncThunk(
@@ -85,19 +85,11 @@ export const profileSlice = createSlice({
   initialState,
   reducers: {
     setActiveProfile: (state, action) => {
-      const id: Number = action.payload;
-
+      const id: number = action.payload;
       if (!id) {
         state.inFocus = null;
       }
-      const found = state.profiles.find((item) => item.id === id);
-      state.inFocus = found || null;
-    },
-    replaceProfile: (state, action) => {
-      const profile: Profile = action.payload;
-      state.profiles = state.profiles.map((p) =>
-        p.id === profile.id ? profile : p
-      );
+      state.inFocus = state.profiles[id] || null;
     },
   },
   extraReducers: (builder) => {
@@ -111,28 +103,28 @@ export const profileSlice = createSlice({
     builder.addCase(editProfile.fulfilled, (state, action) => {
       // After editing is successful, replaces profile in the state and focus
       const profile: Profile = action.payload;
-      const newProfiles = state.profiles.map((p) =>
-        p.id === profile.id ? profile : p
-      );
       return {
         ...state,
-        profiles: newProfiles,
+        profiles: { ...state.profiles, [profile.id]: profile },
         inFocus: profile,
       };
     });
 
     builder.addCase(addProfile.fulfilled, (state, action) => {
       const profile: Profile = action.payload;
-      state.profiles.push(profile);
+      return {
+        ...state,
+        profiles: { ...state.profiles, [profile.id]: profile },
+      };
     });
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setActiveProfile, replaceProfile } = profileSlice.actions;
+export const { setActiveProfile } = profileSlice.actions;
 export const profilesState = (state: RootState) => state.profile.profiles;
 export const profilesCount = (state: RootState) =>
-  state.profile.profiles.length as number;
+  Object.keys(state.profile.profiles).length as number;
 export const profileInFocus = (state: RootState) => state.profile.inFocus;
 
 export default profileSlice.reducer;

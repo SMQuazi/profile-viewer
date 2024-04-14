@@ -24,17 +24,19 @@ const ProfileList = () => {
       />
 
       <Grid container spacing={4}>
-        {profiles.length > 0 &&
-          profiles
+        {Object.keys(profiles).length > 0 &&
+          Object.keys(profiles)
             .filter(
-              (profile) =>
-                profile.first_name
+              (key) =>
+                profiles[key].first_name
                   .toLowerCase()
                   .includes(search.toLowerCase()) ||
-                profile.last_name.toLowerCase().includes(search.toLowerCase())
+                profiles[key].last_name
+                  .toLowerCase()
+                  .includes(search.toLowerCase())
             )
-            .map((profile) => (
-              <ProfileItem profile={profile} key={profile.id} />
+            .map((key) => (
+              <ProfileItem profile={profiles[key]} key={profiles[key].id} />
             ))}
       </Grid>
     </>

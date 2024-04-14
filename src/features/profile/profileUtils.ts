@@ -13,7 +13,7 @@ type Profile = {
 };
 
 type ProfileState = {
-  profiles: Profile[];
+  profiles: { [index: string]: Profile };
   inFocus: Profile | null;
 };
 
