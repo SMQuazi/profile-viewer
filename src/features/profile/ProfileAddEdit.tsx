@@ -168,7 +168,7 @@ const ProfileAddEdit = () => {
       icon: <Phone />,
       onblur: () => {
         let phone = formProfile.phone;
-        if (phone.length === 10) {
+        if (phone?.length === 10) {
           phone =
             phone.substring(0, 3) +
             "-" +
