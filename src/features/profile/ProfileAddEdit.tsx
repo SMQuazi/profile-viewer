@@ -111,7 +111,7 @@ const ProfileAddEdit = () => {
     // If res has error, set error message and return to NOT navigate.
     if (res.error) {
       let errorMsg = `An error has occurred.`;
-      res.payload.errors?.forEach(
+      res.payload?.errors?.forEach(
         (error: any) => (errorMsg += ` | ${error.param} - ${error.msg}`)
       );
       console.error(errorMsg);
