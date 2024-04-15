@@ -6,7 +6,6 @@ import {
   Grid,
   Stack,
   Typography,
-  useTheme,
 } from "@mui/material";
 import { Profile } from "./profileUtils";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +22,6 @@ type ProfileItemArgs = {
 const ProfileItem = ({ profile }: ProfileItemArgs) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const theme = useTheme();
   const [photo, setPhoto] = useState(profile?.photo);
   const [raised, setRaised] = useState(false);
 

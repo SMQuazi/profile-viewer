@@ -15,7 +15,6 @@ import {
   Fade,
   Stack,
   Typography,
-  useTheme,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -35,7 +34,6 @@ const ProfileShow = () => {
   const dispatch = useAppDispatch();
   const profiles = useSelector(profilesState);
   const current = useSelector(profileInFocus);
-  const theme = useTheme();
   const [photo, setPhoto] = useState(current?.photo);
 
   useEffect(() => {
