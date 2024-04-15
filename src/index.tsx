@@ -5,13 +5,10 @@ import App from "./App";
 import store from "./store";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
-import { fetchProfiles } from "./features/profile/profileSlice";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
-
-store.dispatch(fetchProfiles());
 
 root.render(
   <React.StrictMode>

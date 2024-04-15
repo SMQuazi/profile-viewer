@@ -8,6 +8,8 @@ import { ProfileAddEdit } from "./features/profile/ProfileAddEdit";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useSelector } from "react-redux";
 import { darkmode } from "./features/settings/settingsSlice";
+import { useAppDispatch } from "./store";
+import { fetchProfiles } from "./features/profile/profileSlice";
 
 const lightTheme = createTheme({
   palette: {
@@ -35,6 +37,8 @@ const darkTheme = createTheme({
 
 function App() {
   const isDarkMode = useSelector(darkmode);
+  const dispatch = useAppDispatch();
+  dispatch(fetchProfiles());
 
   return (
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
